@@ -16,26 +16,20 @@ public class EntradaConsole {
 
     public Grafo lerGrafoManual() {
         List<String> linhas = new ArrayList<>();
-        boolean recebendoEntrada = true;
 
         System.out.println("Primeira linha: todos os vértices separados por espaço.");
         System.out.println("Demais linhas: vértice seguido de seus adjacentes.");
         System.out.println("Digite FIM para encerrar a entrada manual.");
         System.out.println();
 
-        while (recebendoEntrada) {
+        System.out.print("> ");
+        String linha = scanner.nextLine().trim();
+
+        while (!linha.equalsIgnoreCase("FIM")) {
+            linhas.add(linha);
+
             System.out.print("> ");
-            String linha = scanner.nextLine();
-
-            if (linha.trim().equalsIgnoreCase("FIM")) {
-                recebendoEntrada = false;
-            } else if (!linha.trim().isEmpty()) {
-                linhas.add(linha);
-            }
-        }
-
-        if (linhas.isEmpty()) {
-            throw new IllegalArgumentException("Nenhuma linha foi informada para montar o grafo.");
+            linha = scanner.nextLine().trim();
         }
 
         System.out.println();

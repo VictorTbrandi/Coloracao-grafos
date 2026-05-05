@@ -13,8 +13,6 @@ public class Main {
             ColoracaoWelshPowell coloracao = new ColoracaoWelshPowell(grafo);
             coloracao.executar();
             coloracao.imprimirMatrizFinal();
-        } catch (IllegalArgumentException | IllegalStateException e) {
-            System.out.println("Erro durante a execução: " + e.getMessage());
         }
     }
 }

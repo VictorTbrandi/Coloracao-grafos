@@ -14,10 +14,6 @@ public class Grafo {
     private final Map<String, LinkedHashSet<String>> listaAdjacencia;
 
     public Grafo(List<String> vertices) {
-        if (vertices == null || vertices.isEmpty()) {
-            throw new IllegalArgumentException("O grafo deve possuir pelo menos um vértice.");
-        }
-
         this.vertices = new ArrayList<>(vertices);
         this.listaAdjacencia = new LinkedHashMap<>();
 
@@ -27,13 +23,8 @@ public class Grafo {
     }
 
     public void adicionarAresta(String origem, String destino) {
-        validarVertice(origem);
-        validarVertice(destino);
-
-        if (!origem.equals(destino)) {
-            listaAdjacencia.get(origem).add(destino);
-            listaAdjacencia.get(destino).add(origem);
-        }
+        listaAdjacencia.get(origem).add(destino);
+        listaAdjacencia.get(destino).add(origem);
     }
 
     public List<String> getVertices() {
@@ -41,12 +32,10 @@ public class Grafo {
     }
 
     public Set<String> getAdjacentes(String vertice) {
-        validarVertice(vertice);
         return Collections.unmodifiableSet(listaAdjacencia.get(vertice));
     }
 
     public int getGrau(String vertice) {
-        validarVertice(vertice);
         return listaAdjacencia.get(vertice).size();
     }
 
@@ -55,21 +44,10 @@ public class Grafo {
     }
 
     public int getIndice(String vertice) {
-        int indice = vertices.indexOf(vertice);
-
-        if (indice == -1) {
-            throw new IllegalArgumentException("Vértice não encontrado: " + vertice);
-        }
-
-        return indice;
-    }
-
-    public boolean contemVertice(String vertice) {
-        return listaAdjacencia.containsKey(vertice);
+        return vertices.indexOf(vertice);
     }
 
     public List<String> getAdjacentesOrdenadosAlfabeticamente(String vertice) {
-        validarVertice(vertice);
         List<String> adjacentes = new ArrayList<>(listaAdjacencia.get(vertice));
         adjacentes.sort(String.CASE_INSENSITIVE_ORDER);
         return adjacentes;
@@ -89,11 +67,5 @@ public class Grafo {
         }
 
         System.out.println();
-    }
-
-    private void validarVertice(String vertice) {
-        if (!listaAdjacencia.containsKey(vertice)) {
-            throw new IllegalArgumentException("Vértice não encontrado na primeira linha da entrada: " + vertice);
-        }
     }
 }

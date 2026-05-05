@@ -90,10 +90,6 @@ public class ColoracaoWelshPowell {
             }
         }
 
-        if (maiorVertice == null) {
-            throw new IllegalStateException("Não há vértices pendentes para colorir.");
-        }
-
         return maiorVertice;
     }
 
@@ -117,10 +113,6 @@ public class ColoracaoWelshPowell {
             }
 
             coluna++;
-        }
-
-        if (corEncontrada == 0) {
-            throw new IllegalStateException("Não foi encontrada cor livre para o vértice " + vertice + ".");
         }
 
         return corEncontrada;
