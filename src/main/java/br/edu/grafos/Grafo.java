@@ -24,7 +24,6 @@ public class Grafo {
 
     public void adicionarAresta(String origem, String destino) {
         listaAdjacencia.get(origem).add(destino);
-        listaAdjacencia.get(destino).add(origem);
     }
 
     public List<String> getVertices() {
